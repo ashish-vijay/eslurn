@@ -3,7 +3,13 @@
   "version": "0.0.0",
   "description": "Simple todo application.",
   "main": "server.js",
-  "author": "Scotch",
+  "author": "ashish",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "engines": {
+    "node": "6.10.3"
+  },
   "dependencies": {
     "body-parser": "~1.5.2",
     "express": "~4.7.2",
