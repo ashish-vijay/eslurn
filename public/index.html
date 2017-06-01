@@ -19,24 +19,26 @@
         <div class="text-center">
             <h1>To-do <span style="color:red">{{ todos.length }}</span> tasks</h1>
         </div>
-        <div id="todo-form" class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
+        <div id="todo-form" class="row form-group">
+            <div class="col-lg text-center">
                 <form class="form-inline">
                     <div class="form-group">
                       <input type="text" class="form-control input-lg text-center" placeholder="Add to-do" ng-model="formData.text" >
                     </div>
-                    <button type="submit" class="btn btn-warning btn-lg" ng-click="createTodo(); timeAlert()">Add</button>
+                    <button type="submit" class="btn btn-warning btn-lg" ng-click="createTodo(); timeAlert()"><i class="glyphicon glyphicon-plus"></i></button>
                 </form>
             </div>
         </div>
+
         <div id="todo-list" class="row">
-          <div class="list-group">
-                <div ng-repeat="todo in todos" class="col-sm-12">
-                    <label>
-                       <input id="toggle-all" type="checkbox" ng-click="deleteTodo(todo._id)" class="text-center">  {{ todo.text }} {{todo.time}}
-                    </lable>
+         <div>
+               <div ng-repeat="todo in todos" class="col-lg text-center">
+                     <ul class="list-group">
+                       {{ todo.text }}<button id="delete-todo" type="button" ng-click="deleteTodo(todo._id)" style="float: right;" class=" btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                     </ul>
                 </div>
-              </div>
+          </div>
         </div>
+    </div>
 </body>
 </html>
