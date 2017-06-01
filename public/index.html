@@ -19,15 +19,6 @@
         <div class="text-center">
             <h1>To-do <span style="color:red">{{ todos.length }}</span> tasks</h1>
         </div>
-        <div id="todo-list" class="row">
-          <div class="list-group">
-                <div ng-repeat="todo in todos" class="text-center" >
-                    <label>
-                       <input id="toggle-all" type="checkbox" ng-click="deleteTodo(todo._id)" class="text-center">  {{ todo.text }} {{todo.time}}
-                    </lable>
-                </div>
-              </div>
-        </div>
         <div id="todo-form" class="row">
             <div class="col-sm-8 col-sm-offset-2 text-center">
                 <form class="form-inline">
@@ -37,6 +28,15 @@
                     <button type="submit" class="btn btn-warning btn-lg" ng-click="createTodo(); timeAlert()">Add</button>
                 </form>
             </div>
+        </div>
+        <div id="todo-list" class="row">
+          <div class="list-group">
+                <div ng-repeat="todo in todos" class="col-sm-12">
+                    <label>
+                       <input id="toggle-all" type="checkbox" ng-click="deleteTodo(todo._id)" class="text-center">  {{ todo.text }} {{todo.time}}
+                    </lable>
+                </div>
+              </div>
         </div>
 </body>
 </html>
