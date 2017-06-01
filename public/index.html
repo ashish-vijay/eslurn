@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="eTodo">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Node/Angular Todo App</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src= "//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+    <script src="core.js"></script>
+</head>
+<body ng-controller="mainController" onload="DisplayDateTime();">
+    <div class="container">
+        <div class="text-center">
+            <h1>To-do <span style="color:red">{{ todos.length }}</span> tasks</h1>
+        </div>
+        <div id="todo-list" class="row">
+          <div class="list-group">
+                <div ng-repeat="todo in todos" class="text-center" >
+                    <label>
+                       <input type="checkbox" ng-click="deleteTodo(todo._id)" class="text-center">  {{ todo.text }} {{todo.time}}
+                    </lable>
+                </div>
+              </div>
+        </div>
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form class="form-inline">
+                    <div class="form-group">
+                      <input type="text" class="form-control input-lg text-center" placeholder="Add to-do" ng-model="formData.text" >
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo(); timeAlert()">Add</button>
+                </form>
+            </div>
+        </div>
+        <canvas id="myChart" width="400" height="400"></canvas>
+</body>
+</html>
