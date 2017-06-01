@@ -6,7 +6,9 @@
     var moment = require('moment');
 
     var mongoURL = process.env.PROD_MONGODB || 'mongodb://localhost:27017/todo-eslurn'
-    mongoose.connect(mongoURL);
+    mongoose.connect(mongoURL, () => {
+      console.log('DB Connected');
+    });
 
     app.use(express.static(__dirname + '/public'));
     app.use(bodyParser.urlencoded({'extended':'true'}));
