@@ -5,11 +5,17 @@
     var methodOverride = require('method-override');
     var moment = require('moment');
 
-    var mongoURL = process.env.PROD_MONGODB || 'mongodb://localhost:27017/todo-eslurn'
-    mongoose.connect(mongoURL, () => {
-      console.log('DB Connected');
-    });
-
+   //var mongoURL = 'mongodb://localhost:27017/todo-eslurn';
+   var mongoURL = 'mongodb://ashish:vijay@ds119210.mlab.com:19210/todo-eslurn'
+    mongoose.connect(mongoURL);
+    var Todo = mongoose.model('Todo', {
+          text: {
+            type: String
+          },
+          time: {
+            type: String
+          }
+      });
     app.use(express.static(__dirname + '/public'));
     app.use(bodyParser.urlencoded({'extended':'true'}));
     app.use(bodyParser.json());
@@ -62,14 +68,6 @@
         });
     });
 
-    var Todo = mongoose.model('Todo', {
-      text: {
-        type: String
-      },
-      time: {
-        type: String
-      }
-  });
     app.listen(port, () => {
-      console.log("App listening on port 5000");
+      console.log(`App listening on port ${port}`);
     });
