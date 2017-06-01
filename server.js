@@ -5,7 +5,7 @@
     var methodOverride = require('method-override');
     var moment = require('moment');
 
-   var mongoURL = 'mongodb://localhost:27017/todo-eslurn';
+   var mongoURL = process.env.PROD_MONGODB;
     mongoose.connect(mongoURL);
     var Todo = mongoose.model('Todo', {
           text: {
