@@ -44,4 +44,25 @@ function mainController($scope, $http) {
                 console.log('Error: ' + data);
             });
     };
+
+    var notify = function() {
+        Notification.requestPermission().then(function(result) {
+        var time = new Date();
+        var bhours = time.getHours();
+        var bminutes = time.getMinutes();
+        var btime = bhours + ':' + bminutes;
+        $http.get('/api/todos')
+            .success(function(data) {
+                for(var i = 0; i < data.length; i++){
+                  if(btime === data[i].time){
+                      var notification = new Notification(data[i].text);
+                  }
+                }
+            })
+            .error(function(data) {
+                console.log(data + 'notify error');
+            });
+      });
+    };
+    setInterval(notify, 30000);
 }

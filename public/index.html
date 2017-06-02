@@ -13,15 +13,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <script src="core.js"></script>
-  <script>
-        Notification.requestPermission().then(function(result) {
-        var time = new Date();
-        var bhours = time.getHours();
-        var bminutes = time.getMinutes();
-        var btime = bhours + ':' + bminutes;
-        var notification = new Notification(btime);
-      });
-    </script>
 </head>
 <body ng-controller="mainController">
     <div class="container">
