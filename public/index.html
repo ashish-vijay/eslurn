@@ -23,10 +23,10 @@
             <div class="col-lg text-center">
                 <form class="form-inline">
                     <div class="form-group">
-                      <input type="text" class="form-control input-lg text-center" placeholder="Add to-do" ng-model="formData.text">
-                      <input type="text" class="form-control input-lg text-center" placeholder="At what time?" ng-model="formData.time" >
+                      <input type="text" class="form-control input-lg text-center" placeholder="Add to-do" ng-model="formData.text" required>
+                      <input type="text" class="form-control input-lg text-center" placeholder="Time (ex. 23:00)" ng-model="formData.time" required>
                     </div>
-                    <button type="submit" class="btn btn-warning btn-lg" ng-click="createTodo(); timeAlert()"><i class="glyphicon glyphicon-plus"></i></button>
+                    <button type="submit" class="btn btn-warning btn-lg" ng-click="createTodo();"><i class="glyphicon glyphicon-plus"></i></button>
                 </form>
             </div>
         </div>
@@ -34,7 +34,7 @@
         <div id="todo-list" class="row">
          <div>
                <div ng-repeat="todo in todos" class="col-lg text-center">
-                     <ul class="list-group">{{ todo.text }}
+                     <ul class="list-group">{{ todo.text }} at {{ todo.time }}
                        <button id="delete-todo" type="button" ng-click="deleteTodo(todo._id)" style="float: right;" class=" btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
                      </ul>
                 </div>
