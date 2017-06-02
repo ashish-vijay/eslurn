@@ -61,16 +61,7 @@
               });
           });
       });
-      //
-      // var notytime = function() {
-      //   Todo.find(function(err, data) {
-      //       if(err) throw err;
-      //       console.log(data);
-      //   });
-      // };
-      // notytime();
-      // setInterval(notytime(), 1000);
-
+    
     app.listen(port, () => {
       console.log(`App listening on port ${port}`);
     });

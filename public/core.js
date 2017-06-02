@@ -45,7 +45,7 @@ function mainController($scope, $http) {
     var notify = function() {
         Notification.requestPermission().then(function(result) {
         var time = new Date();
-        var bhours = time.getHours();
+        var bhours = (time.getHours()<10?'0':'') + time.getHours();
         var bminutes = (time.getMinutes()<10?'0':'') + time.getMinutes()
         var btime = bhours + ':' + bminutes;
         $http.get('/api/todos')
@@ -54,6 +54,7 @@ function mainController($scope, $http) {
                   if(btime === data[i].time){
                       var notification = new Notification(data[i].text);
                   }
+                  console.log(btime);
                 }
             })
             .error(function(data) {
