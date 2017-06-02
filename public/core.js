@@ -24,7 +24,6 @@ function mainController($scope, $http) {
                 totaltodo = totaltodo + 1;
                 $scope.ttodo = totaltodo;
                 console.log(data);
-                console.log(totaltodo + 'totaltodo');
             })
             .error(function(data) {
                 console.log('Error: ' + data);
@@ -38,7 +37,6 @@ function mainController($scope, $http) {
                 completedtodo = completedtodo + 1;
                 $scope.ctodo = completedtodo;
                 console.log(data);
-                console.log(completedtodo + 'completedtodo');
             })
             .error(function(data) {
                 console.log('Error: ' + data);
