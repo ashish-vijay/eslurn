@@ -10,7 +10,6 @@ function mainController($scope, $http) {
             totaltodo = data.length;
             $scope.ttodo = totaltodo;
             console.log(data);
-            console.log(totaltodo + 'totaltodo');
         })
         .error(function(data) {
             console.log('Error: ' + data);
