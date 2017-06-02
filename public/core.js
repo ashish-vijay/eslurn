@@ -54,7 +54,6 @@ function mainController($scope, $http) {
                   if(btime === data[i].time){
                       var notification = new Notification(data[i].text);
                   }
-                  console.log(btime);
                 }
             })
             .error(function(data) {
