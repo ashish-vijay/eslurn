@@ -49,7 +49,7 @@ function mainController($scope, $http) {
         Notification.requestPermission().then(function(result) {
         var time = new Date();
         var bhours = time.getHours();
-        var bminutes = time.getMinutes();
+        var bminutes = (time.getMinutes()<10?'0':'') + time.getMinutes()
         var btime = bhours + ':' + bminutes;
         $http.get('/api/todos')
             .success(function(data) {
@@ -62,6 +62,8 @@ function mainController($scope, $http) {
             .error(function(data) {
                 console.log(data + 'notify error');
             });
+      }).catch((err) => {
+        console.log('Rejected for notification');
       });
     };
     setInterval(notify, 30000);
