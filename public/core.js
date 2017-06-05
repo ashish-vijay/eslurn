@@ -150,6 +150,7 @@ function mainController($scope, $http) {
       options: {
         title:{
                         display:true,
+                        text:"Statistics of this to-do app"
                         },
                         tooltips: {
                             mode: 'index',
