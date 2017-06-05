@@ -48,7 +48,10 @@ function mainController($scope, $http) {
         var time = new Date();
         var bhours = (time.getHours()<10?'0':'') + time.getHours();
         var bminutes = (time.getMinutes()<10?'0':'') + time.getMinutes()
-        var bdate = time.getDay();
+        var bday = time.getDate();
+        var bmonth = time.getMonth();
+        var bdate = bday + '/' + bmonth;
+        console.log(bdate);
         var btime = bhours + ':' + bminutes;
         $http.get('/api/todos')
             .success(function(data) {
@@ -65,7 +68,7 @@ function mainController($scope, $http) {
         console.log('Rejected for notification');
       });
     };
-    setInterval(notify, 5000);
+    setInterval(notify, 30000);
 
     var chart = function() {
       var ctx = document.getElementById('myChart').getContext('2d');
