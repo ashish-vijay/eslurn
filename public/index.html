@@ -12,13 +12,13 @@
     </style>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="core.js"></script>
 </head>
 <body ng-controller="mainController">
     <div class="container">
         <div class="text-center">
             <h1>To-do <span style="color:red">{{ todos.length }}</span> tasks</h1>
-            <h4>total to-do: <span style="color:grey">{{ ttodo }} </span> completed todo: <span style="color:grey"> {{ctodo}} </span></h4>
         </div>
         <div id="todo-form" class="row form-group">
             <div class="col-lg text-center">
@@ -41,6 +41,7 @@
                 </div>
           </div>
         </div>
+        <canvas id="myChart"></canvas>
     </div>
 </body>
 </html>

@@ -2,6 +2,7 @@ var eTodo = angular.module('eTodo', []);
 
 var totaltodo;
 var completedtodo = 0;
+var bdate ="";
 function mainController($scope, $http) {
     $scope.formData = {};
     $http.get('/api/todos')
@@ -47,6 +48,7 @@ function mainController($scope, $http) {
         var time = new Date();
         var bhours = (time.getHours()<10?'0':'') + time.getHours();
         var bminutes = (time.getMinutes()<10?'0':'') + time.getMinutes()
+        var bdate = time.getDay();
         var btime = bhours + ':' + bminutes;
         $http.get('/api/todos')
             .success(function(data) {
@@ -63,5 +65,52 @@ function mainController($scope, $http) {
         console.log('Rejected for notification');
       });
     };
-    setInterval(notify, 30000);
+    setInterval(notify, 5000);
+
+    var chart = function() {
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'bar',
+
+      // The data for our dataset
+      data: {
+          labels: [bdate],
+          datasets: [{
+              label: "To-do Done",
+              backgroundColor: 'rgb(255, 99, 132)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: [completedtodo],
+          },
+          {
+              label: "To-do Undone",
+              backgroundColor: 'rgb(0,191,255)',
+              borderColor: 'rgb(0,191,255)',
+              data: [totaltodo - completedtodo],
+          }
+        ]
+      },
+
+      // Configuration options go here
+      options: {
+        title:{
+                        display:true,
+                        },
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        responsive: true,
+                        scales: {
+                            xAxes: [{
+                                stacked: true,
+                            }],
+                            yAxes: [{
+                                stacked: true
+                            }]
+                    }
+      }
+    });
+    };
+    setInterval(chart,10000);
 }
