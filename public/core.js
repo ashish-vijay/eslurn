@@ -1,19 +1,56 @@
 var eTodo = angular.module('eTodo', []);
 
 var totaltodo;
-var completedtodo = 0;
+var completedtodo;
 var bdate ="";
+var tObj = {};
+var cObj = {};
+var newDate = new Date();
+var newDay = newDate.getDate();
+var newMonth = newDate.getMonth() + 1;
+var newYear = newDate.getFullYear();
+var todaydate = newDay + '/' + newMonth + '/' + newYear;
+var datearray = [todaydate];
+// var dateset = function(todaydate){
+//   dlength = datearray.length;
+//   if(datearray[dlength - 1] === todaydate){
+//     console.log(datearray[datearray.length - 1] + 'datarray3');
+//     //return datearray;
+//   }
+//   else{
+//     datearray.push(todaydate);
+//     console.log(datearray[datearray.length - 1] + 'datarray');
+//     //return
+//   }
+// };
+// dateset();
+console.log(datearray + 'ogdatearray');
+
 function mainController($scope, $http) {
     $scope.formData = {};
+
     $http.get('/api/todos')
         .success(function(data) {
             $scope.todos = data;
-            totaltodo = data.length;
-            $scope.ttodo = totaltodo;
-            console.log(data);
         })
         .error(function(data) {
             console.log('Error: ' + data);
+        });
+
+    $http.get('/api/chartt')
+      .success(function(data) {
+        totaltodo = data.ttodo;
+      })
+      .error(function(data) {
+        console.log('Error in /GET /api/chart' + data);
+      });
+
+      $http.get('/api/chartc')
+        .success(function(data) {
+          completedtodo = data.ctodo;
+        })
+        .error(function(data) {
+          console.log('Error in /GET /api/chart' + data);
         });
 
     $scope.createTodo = function() {
@@ -23,6 +60,17 @@ function mainController($scope, $http) {
                 $scope.todos = data;
                 totaltodo = totaltodo + 1;
                 $scope.ttodo = totaltodo;
+                tObj = {
+                  ttodo: totaltodo
+                };
+                $http.post('/api/chart', tObj)
+                  .success(function(tObj) {
+                  console.log(tObj);
+                  chart();
+                  })
+                  .error(function(data) {
+                    console.log('Error in ttodo post' + data);
+                  });
                 console.log(data);
             })
             .error(function(data) {
@@ -36,6 +84,17 @@ function mainController($scope, $http) {
                 $scope.todos = data;
                 completedtodo = completedtodo + 1;
                 $scope.ctodo = completedtodo;
+                cObj = {
+                  ctodo: completedtodo
+                };
+                $http.post('/api/chart', cObj)
+                  .success(function(data) {
+                    console.log(data);
+                    chart();
+                  })
+                  .error(function(data) {
+                    console.log('Error in ctodo post' + data);
+                  });
                 console.log(data);
             })
             .error(function(data) {
@@ -49,9 +108,8 @@ function mainController($scope, $http) {
         var bhours = (time.getHours()<10?'0':'') + time.getHours();
         var bminutes = (time.getMinutes()<10?'0':'') + time.getMinutes()
         var bday = time.getDate();
-        var bmonth = time.getMonth();
+        var bmonth = time.getMonth() + 1;
         var bdate = bday + '/' + bmonth;
-        console.log(bdate);
         var btime = bhours + ':' + bminutes;
         $http.get('/api/todos')
             .success(function(data) {
@@ -78,7 +136,7 @@ function mainController($scope, $http) {
 
       // The data for our dataset
       data: {
-          labels: [bdate],
+          labels: datearray,
           datasets: [{
               label: "To-do Done",
               backgroundColor: 'rgb(255, 99, 132)',
@@ -115,5 +173,5 @@ function mainController($scope, $http) {
       }
     });
     };
-    setInterval(chart,10000);
+  setTimeout(chart, 1000);
 }
