@@ -11,21 +11,15 @@ var newMonth = newDate.getMonth() + 1;
 var newYear = newDate.getFullYear();
 var todaydate = newDay + '/' + newMonth + '/' + newYear;
 var datearray = [todaydate];
-// var dateset = function(todaydate){
-//   dlength = datearray.length;
-//   if(datearray[dlength - 1] === todaydate){
-//     console.log(datearray[datearray.length - 1] + 'datarray3');
-//     //return datearray;
-//   }
-//   else{
-//     datearray.push(todaydate);
-//     console.log(datearray[datearray.length - 1] + 'datarray');
-//     //return
-//   }
-// };
-// dateset();
-console.log(datearray + 'ogdatearray');
-
+var dateset = function(todaydate){
+  dlength = datearray.length;
+  if((datearray[dlength - 1]) == todaydate){
+     console.log(true);
+  }
+  else
+    console.log(false);
+};
+dateset(datearray);
 function mainController($scope, $http) {
     $scope.formData = {};
 
@@ -173,5 +167,5 @@ function mainController($scope, $http) {
       }
     });
     };
-  setTimeout(chart, 1000);
+  setTimeout(chart, 5000);
 }
